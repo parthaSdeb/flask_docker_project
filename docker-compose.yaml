@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+  app-service:
+    depends_on:
+      - "db"
+    build:
+      context: ./application-service
+    ports:
+      - 5000:5000
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PASSWORD=password
+    volumes:
+      - type: bind
+        source: ./application-service
+        target: /app
+    networks: 
+      - flask-app-net-1
+      - flask-app-net-2
+
+  db:
+    restart: always
+    build:
+      context: ./db-service
+    command: '--default-authentication-plugin=mysql_native_password'
+    environment:
+      - MYSQL_DATABASE=test_db
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - 33061:3306
+    networks:
+      - flask-app-net-2
+    volumes:
+      - flask_app_db:/var/lib/data
+
+  web_proxy:
+    build:
+      context: ./web_proxy_service
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - flask-app-net-1
+
+
+
+
+volumes:
+  flask_app_db:
+
+networks:
+  flask-app-net-1:
+  flask-app-net-2:

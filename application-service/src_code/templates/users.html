@@ -1,0 +1,51 @@
+<!-- <table border="2">
+    <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone No</th>
+    </tr>
+    {% for user in userDetails %}
+    <tr>
+        <td>{{user[0]}}</td>
+        <td>{{user[1]}}</td>
+        <td>{{user[2]}}</td>
+        <td>{{user[3]}}</td </tr>
+        {% endfor %}
+</table> -->
+
+<html>
+
+<head>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 15px;
+        }
+        </style>
+</head>
+
+<body>
+    <table border="2">
+        <caption>Users Information</caption>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone No</th>
+        </tr>
+        {% for user in userDetails %}
+        <tr>
+            <td>{{user[0]}}</td>
+            <td>{{user[1]}}</td>
+            <td>{{user[2]}}</td>
+            <td>{{user[3]}}</td </tr>
+            {% endfor %}
+    </table>
+
+</body>
+
+</html>

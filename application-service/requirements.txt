@@ -1,0 +1,4 @@
+FLASK==1.1.1
+wheel
+flask-mysqldb
+# mysql-connector
